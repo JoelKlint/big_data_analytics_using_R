@@ -22,9 +22,13 @@ plot(org)
 
 library(ggvis)
 mtcars %>% 
-  ggvis(~wt, ~mpg, fill:='red', stroke:='black',
+  ggvis(~wt, 
+        ~mpg, 
+        fill:='red', 
+        stroke:='black',
         size:= input_slider(10, 100, label='point size'),
-        opacity:=input_slider(0, 1, label='opacity')) %>% 
+        opacity:=input_slider(0, 1, label='opacity')
+        ) %>% 
   layer_points()
 
 house <- read.csv('RealEstate.csv', header=TRUE)

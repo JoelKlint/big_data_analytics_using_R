@@ -1,0 +1,15 @@
+---
+title: "Homework 3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercise 1
+
+```{r}
+summary(cars)
+plot(cars) & title('Cars')
+```
