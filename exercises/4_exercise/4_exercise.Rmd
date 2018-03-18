@@ -1,0 +1,67 @@
+---
+title: "Exercise 4"
+output: html_document
+---
+## Exercise 1
+```{r}
+baseball = data.frame(
+  team = c("Team A", "Team B", "Team C", "Team D", "Team E"), 
+  batting = runif(25, .200, .400) 
+)
+with(baseball, tapply(batting, team, mean))
+```
+
+## Exercise 2
+```{r}
+library(ggplot2)
+ggplot(ToothGrowth, aes(x = supp, y = len, fill=supp)) + 
+  geom_boxplot(notch = TRUE) + 
+  ggtitle("Tooth thing growth among guinea pigs") + 
+  xlab("Supplement") + 
+  ylab("Tooth length") + 
+  labs(fill="Supplement")
+```
+
+## Exercise 3
+### a)
+```{r}
+Titan = matrix(c(659, 146, 670, 192, 106, 296, 3, 20), nrow = 4, byrow = TRUE)
+rownames(Titan) = c("PassMale", "CrewMale", "PassFemale", "CrewFemale")
+colnames(Titan) = c("Died", "Survived")
+Titan
+```
+### b)
+```{r}
+barplot(
+  t(Titan),
+  beside = TRUE, 
+  col=c('turquoise', 'orange'),
+  legend = colnames(Titan),
+  ylab = "Frequency",
+  main = "Death/Survival among people aboard Titanic"
+)
+```
+
+## Exercise 4
+### 1)
+```{r}
+my_cumsum = function(arg) {
+  result = c(arg[1])
+  for(i in 2:length(arg))
+    result <- c(result, tail(result, 1) + arg[i])
+  return(result)
+}
+
+my_cumprod = function(arg) {
+  result = c(arg[1])
+  for(i in 2:length(arg))
+    result <- c(result, tail(result, 1) * arg[i])
+  return(result)
+}
+```
+### 2)
+```{r}
+to_derive = expression(exp(x^2)); D(to_derive, 'x')
+
+to_integrate = function(x) {x^2}; integrate(to_integrate, lower = 0, upper = 1)
+```
