@@ -407,6 +407,17 @@ ggplot(USArrests, aes(Murder, Assault)) +
   geom_point(col='blue') + 
   geom_text(aes(label=row.names(USArrests)))
 
+
+# =============== adding error bars =============== #
+x <- lm(Employed ~ GNP, data=longley)
+ggplot(x, aes(x=longley$GNP, y=x$fitted.values)) +
+  geom_line() + 
+  geom_segment(
+    aes(xend=longley$GNP, y=longley$Employed+x$residuals, yend=longley$Employed-x$residuals),
+    col="red") +
+  geom_point(aes(y = longley$Employed+x$residuals), col="red")
+
+
 # =============== making histograms =============== #
 # Histograms shows frequence of continous values within certain bins
 # With this, we can show distribution of a continous value
@@ -866,7 +877,7 @@ assoc(x, shade=TRUE)
 # lm accepts a formula as its first argument. It is on the form y ~ x
 x <- lm(Employed ~ GNP, data=longley); x
 
-# =============== Multivariate linear regression =============== #
+x# =============== Multivariate linear regression =============== #
 # For multivariate regression, the formula should be on the form y ~ x1 + x2 + x3 + ... xn
 x <- lm(Employed ~ GNP + Armed.Forces, data=longley); x
 
