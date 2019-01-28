@@ -263,11 +263,10 @@ ggplot(subset(wf, Freq>5), aes(Word,Freq)) +
 # =============== Comparision cloud =============== #
 # Plots two wordclouds next to each other
 # Lecture 17 slide 8
-library(wordcloud)
+library(tm); library(wordcloud)
 data(SOTU)
-corp <- SOTU
-library(NLP); library(tm)
-corp <- tm_map(corp, removePunctuation)
+library(NLP); 
+corp <- tm_map(SOTU, removePunctuation)
 corp <- tm_map(corp, content_transformer(tolower))
 corp <- tm_map(corp, removeNumbers)
 corp <- tm_map(corp, function(x)removeWords(x, stopwords()))
